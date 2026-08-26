@@ -1,0 +1,4 @@
+import {NavLink} from 'react-router-dom';
+import React from 'react';
+import {useApp} from '../context/AppContext';
+export default function Sidebar(){const {profile,theme,setTheme}=useApp();return <aside className="sidebar"><div className="brand">insta<span>•</span></div><nav>{[['⌂','Home','/'],['⌕','Search','/search'],['＋','Create','/create'],['▣','Saved','/saved'],['◉','Profile','/profile'],['⚙','Settings','/settings']].map(([i,t,to])=><NavLink key={to} to={to} className={({isActive})=>isActive?'nav-item active':'nav-item'}><b>{i}</b><span>{t}</span></NavLink>)}</nav><button className="theme-btn" onClick={()=>setTheme(theme==='dark'?'light':'dark')}>{theme==='dark'?'☀':'☾'} {theme==='dark'?'Light mode':'Dark mode'}</button><NavLink className="side-profile" to="/profile"><img src={profile.avatar} alt=""/><span><b>{profile.username}</b><small>{profile.name}</small></span></NavLink></aside>}

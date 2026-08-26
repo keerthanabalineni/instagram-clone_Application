@@ -1,0 +1,3 @@
+import {useApp} from '../context/AppContext';import Avatar from './Avatar';
+import React from 'react';
+export default function Stories({onView}){const {stories,profile}=useApp();return <section className="stories"><button className="story-add" onClick={()=>onView({username:profile.username,avatar:profile.avatar,image:null,mine:true})}><Avatar src={profile.avatar} name="Your story"/><span className="plus">+</span><small>Your story</small></button>{stories.map(s=><button className="story" key={s.id} onClick={()=>onView(s)}><Avatar src={s.avatar} name={s.username} story/><small>{s.username}</small></button>)}</section>}
