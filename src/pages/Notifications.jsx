@@ -1,0 +1,1 @@
+import {useApp} from '../context/AppContext';export default function Notifications(){const {notifications}=useApp();return <div className="page narrow"><h1>Notifications</h1>{notifications.map(n=><div className="notification" key={n.id}><div className="notif-icon">{n.type==='like'?'♥':n.type==='follow'?'＋':'💬'}</div><div><b>{n.text}</b><small>{n.time}</small></div></div>)}</div>}

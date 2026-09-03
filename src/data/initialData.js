@@ -3,4 +3,9 @@ export const photos={hero:img('photo-1494790108377-be9c29b29330'),jane:img('phot
 export const currentUser={id:'me',username:'keerthana',name:'Keerthana Balineni',bio:'Full Stack Developer | CSE (AI & ML)\nBuilding useful things for the web ✨',website:'github.com/keerthanabalineni',location:'Tirupati, India',avatar:photos.hero};
 export const users=[{id:'u1',username:'jane_cooper',name:'Jane Cooper',avatar:photos.jane,following:true},{id:'u2',username:'emma_watson',name:'Emma Watson',avatar:photos.emma,following:true},{id:'u3',username:'liam_lee',name:'Liam Lee',avatar:photos.liam,following:false},{id:'u4',username:'olivia_rodrigo',name:'Olivia Rodrigo',avatar:photos.olivia,following:false},{id:'u5',username:'noah_smith',name:'Noah Smith',avatar:photos.hero,following:false}];
 export const posts=[];
-export const stories=[];
+export const stories=[
+ {id:'s-jane',username:'jane_cooper',avatar:photos.jane,image:photos.beach,time:'2h'},
+ {id:'s-emma',username:'emma_watson',avatar:photos.emma,image:photos.flowers,time:'4h'},
+ {id:'s-liam',username:'liam_lee',avatar:photos.liam,image:photos.city,time:'6h'},
+ {id:'s-olivia',username:'olivia_rodrigo',avatar:photos.olivia,image:photos.food,time:'8h'}
+];

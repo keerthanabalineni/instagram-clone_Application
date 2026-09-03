@@ -1,3 +1,69 @@
-import {useMemo,useState} from 'react';import {useApp} from '../context/AppContext';
-import React from 'react';
-export default function Search(){const {users,posts,toggleFollow}=useApp();const [q,setQ]=useState('');const list=useMemo(()=>users.filter(u=>`${u.username} ${u.name}`.toLowerCase().includes(q.toLowerCase())),[users,q]);const pics=posts.filter(p=>p.caption.toLowerCase().includes(q.toLowerCase()));return <div className="page"><h1>Search</h1><input className="search-box" placeholder="Search people or posts" value={q} onChange={e=>setQ(e.target.value)}/><h3>People</h3><div className="search-users">{list.map(u=><div key={u.id}><img src={u.avatar} alt=""/><span><b>{u.username}</b><small>{u.name}</small></span><button onClick={()=>toggleFollow(u.username)}>{u.following?'Following':'Follow'}</button></div>)}</div><h3>Posts</h3><div className="search-grid">{pics.map(p=><img key={p.id} src={p.image} alt={p.caption}/>)}</div></div>}
+import React, { useMemo, useState } from 'react';
+import { useApp } from '../context/AppContext';
+
+/**
+ * Search Page
+ * Lets users search for people and posts
+ */
+export default function Search() {
+  // ========== STATE & CONTEXT ==========
+  const { users, posts, toggleFollow } = useApp();
+  const [query, setQuery] = useState('');
+
+  // ========== DERIVED STATE ==========
+  // Filter users by username or name
+  const filteredUsers = useMemo(
+    () =>
+      users.filter(u =>
+        `${u.username} ${u.name}`.toLowerCase().includes(
+          query.toLowerCase()
+        )
+      ),
+    [users, query]
+  );
+
+  // Filter posts by caption
+  const filteredPosts = posts.filter(p =>
+    p.caption.toLowerCase().includes(query.toLowerCase())
+  );
+
+  // ========== RENDER ==========
+  return (
+    <div className="page">
+      <h1>Search</h1>
+
+      {/* Search Input */}
+      <input
+        className="search-box"
+        placeholder="Search people or posts"
+        value={query}
+        onChange={e => setQuery(e.target.value)}
+      />
+
+      {/* People Section */}
+      <h3>People</h3>
+      <div className="search-users">
+        {filteredUsers.map(u => (
+          <div key={u.id}>
+            <img src={u.avatar} alt="" />
+            <span>
+              <b>{u.username}</b>
+              <small>{u.name}</small>
+            </span>
+            <button onClick={() => toggleFollow(u.username)}>
+              {u.following ? 'Following' : 'Follow'}
+            </button>
+          </div>
+        ))}
+      </div>
+
+      {/* Posts Section */}
+      <h3>Posts</h3>
+      <div className="search-grid">
+        {filteredPosts.map(p => (
+          <img key={p.id} src={p.image} alt={p.caption} />
+        ))}
+      </div>
+    </div>
+  );
+}

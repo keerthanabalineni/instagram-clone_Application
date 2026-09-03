@@ -1,4 +1,14 @@
-import {BrowserRouter,Routes,Route,Navigate} from 'react-router-dom';import {AppProvider,useApp} from './context/AppContext';import Layout from './components/Layout';import Home from './pages/Home';import Profile from './pages/Profile';import EditProfile from './pages/EditProfile';import Search from './pages/Search';import Saved from './pages/Saved';import Settings from './pages/Settings';import Create from './pages/Create';import Login from './pages/Login';import Logout from './pages/Logout';
 import React from 'react';
-function ProtectedRoute(){const {isAuthenticated}=useApp();return isAuthenticated?<Layout/>:<Navigate to="/login" replace/>}
-export default function App(){return <AppProvider><BrowserRouter><Routes><Route path="/login" element={<Login/>}/><Route path="/logout" element={<Logout/>}/><Route element={<ProtectedRoute/>}><Route path="/" element={<Home/>}/><Route path="/profile" element={<Profile/>}/><Route path="/profile/edit" element={<EditProfile/>}/><Route path="/search" element={<Search/>}/><Route path="/saved" element={<Saved/>}/><Route path="/settings" element={<Settings/>}/><Route path="/create" element={<Create/>}/></Route></Routes></BrowserRouter></AppProvider>}
+import { BrowserRouter } from 'react-router-dom';
+import { AppProvider } from './context/AppContext';
+import AppRoutes from './routes/AppRoutes';
+
+export default function App() {
+  return (
+    <AppProvider>
+      <BrowserRouter>
+        <AppRoutes />
+      </BrowserRouter>
+    </AppProvider>
+  );
+}
